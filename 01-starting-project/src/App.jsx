@@ -1,11 +1,15 @@
 import Header from './components/Header/Header';
 import CoreConceptCard from './components/CoreConceptCard';
-import { CORE_CONCEPTS } from './data';
+import { CORE_CONCEPTS, EXAMPLES } from './data';
 import TabButton from './components/TabButton';
+import { useState } from 'react';
 
 export default function App() {
-	function handleSelect() {
-		console.log('Hello World - Selected!');
+	const [selectedTopic, setSelectedTopic] = useState('components');
+
+	function handleSelect(selectButton) {
+		console.log(selectedTopic);
+		setSelectedTopic(selectButton);
 	}
 	return (
 		<div>
@@ -14,13 +18,8 @@ export default function App() {
 				<section id='core-concepts'>
 					<h2>Core Concepts</h2>
 					<ul>
-						{CORE_CONCEPTS.map((concept, index) => (
-							<CoreConceptCard
-								key={index}
-								image={concept.image}
-								title={concept.title}
-								description={concept.description}
-							/>
+						{CORE_CONCEPTS.map((conceptItem) => (
+							<CoreConceptCard key={conceptItem.title} {...conceptItem} />
 						))}
 					</ul>
 				</section>
@@ -28,12 +27,42 @@ export default function App() {
 				<section id='examples'>
 					<h2>Examples</h2>
 					<menu>
-						<TabButton onSelect={handleSelect}>Components</TabButton>
-						<TabButton onSelect={handleSelect}>JSX</TabButton>
-						<TabButton onSelect={handleSelect}>Props</TabButton>
-						<TabButton onSelect={handleSelect}>State</TabButton>
+						<TabButton
+							isSelected={selectedTopic === 'components'}
+							onSelect={() => handleSelect('components')}
+						>
+							Components
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === 'jsx'}
+							onSelect={() => handleSelect('jsx')}
+						>
+							JSX
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === 'props'}
+							onSelect={() => handleSelect('props')}
+						>
+							Props
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === 'state'}
+							onSelect={() => handleSelect('state')}
+						>
+							State
+						</TabButton>
 					</menu>
 				</section>
+				{!selectedTopic && <p>Select a topic to see an example</p>}
+				{selectedTopic && (
+					<div id='tab-content'>
+						<h3>{EXAMPLES[selectedTopic].title}</h3>
+						<p>{EXAMPLES[selectedTopic].description}</p>
+						<pre>
+							<code>{EXAMPLES[selectedTopic].code}</code>
+						</pre>
+					</div>
+				)}
 			</main>
 		</div>
 	);
