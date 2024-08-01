@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 export default function Log({ turns }) {
 	return (
 		<>
-			<p className='log-title'>Game Moves Logs</p>
-			<hr />
 			<ol id='log'>
 				{turns.map((turn, index) => (
 					<li key={index}>
