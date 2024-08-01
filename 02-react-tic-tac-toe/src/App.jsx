@@ -21,28 +21,32 @@ function App() {
 	}
 	return (
 		<main>
-			<div id='game-container'>
-				<ol id='players' className='highlight-player'>
-					{/* ---- Player X ---- */}
-					<Player
-						name={'player 1'}
-						symbol={'X'}
-						isActive={activePlayer === 'X'}
-					></Player>
-					{/* ---- Player O ---- */}
-					<Player
-						name={'Player 2'}
-						symbol={'O'}
-						isActive={activePlayer === 'O'}
-					></Player>
-				</ol>
-				{/* ---- GameBoard ----- */}
-				<GameBoard
-					onSelectSquare={handleSelectSquare}
-					turns={gameTurns}
-				></GameBoard>
+			<div className='game-outerContainer'>
+				<div id='game-container'>
+					<ol id='players' className='highlight-player'>
+						{/* ---- Player X ---- */}
+						<Player
+							name={'player 1'}
+							symbol={'X'}
+							isActive={activePlayer === 'X'}
+						></Player>
+						{/* ---- Player O ---- */}
+						<Player
+							name={'Player 2'}
+							symbol={'O'}
+							isActive={activePlayer === 'O'}
+						></Player>
+					</ol>
+					{/* ---- GameBoard ----- */}
+					<GameBoard
+						onSelectSquare={handleSelectSquare}
+						turns={gameTurns}
+					></GameBoard>
+				</div>
+				<div className='game-logs'>
+					<Log turns={gameTurns} />
+				</div>
 			</div>
-			<Log turns={gameTurns} />
 		</main>
 	);
 }
