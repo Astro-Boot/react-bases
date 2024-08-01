@@ -3,6 +3,7 @@ import GameBoard from './components/GameBoard';
 import { useState } from 'react';
 import Log from './components/Log';
 import identifyActivePlayer from './helpers/identifyActivePlayer';
+import { WINNING_COMBINATIONS } from './helpers/winning-combinations';
 
 function App() {
 	const [gameTurns, setGameTurns] = useState([]);
