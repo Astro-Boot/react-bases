@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Player({ name: initialName, symbol, isActive }) {
+export default function Player({
+	name: initialName,
+	symbol,
+	isActive,
+	onNameChange,
+}) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [playerName, setPlayerName] = useState(initialName);
 
 	function handleEditClick() {
 		setIsEditing(!isEditing);
+
+		if (isEditing) {
+			onNameChange(symbol, playerName);
+		}
 	}
 
 	function handleChage({ target: { value } }) {
@@ -37,4 +46,5 @@ Player.propTypes = {
 	name: PropTypes.string.isRequired,
 	symbol: PropTypes.string.isRequired,
 	isActive: PropTypes.bool.isRequired,
+	onNameChange: PropTypes.func.isRequired,
 };
