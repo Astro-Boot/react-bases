@@ -1,0 +1,13 @@
+{
+	"name": "react-bases",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"co": "sui-mono commit"
+	},
+	"dependencies": {
+		"@s-ui/mono": "^2.45.0"
+	}
+}
