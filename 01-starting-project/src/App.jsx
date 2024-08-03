@@ -8,7 +8,6 @@ export default function App() {
 	const [selectedTopic, setSelectedTopic] = useState('components');
 
 	function handleSelect(selectButton) {
-		console.log(selectedTopic);
 		setSelectedTopic(selectButton);
 	}
 	return (
